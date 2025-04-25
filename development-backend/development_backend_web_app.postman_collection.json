@@ -1,0 +1,596 @@
+{
+	"info": {
+		"_postman_id": "c57fab47-6a3a-4b76-9436-754d6244a270",
+		"name": "Development Web App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "34589676"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "Login (1) - USER",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"development@example.com\",\r\n  \"password\": \"development123\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8700/api/user/login/"
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "noauth"
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "Login - ADMIN",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"admin@admin.gr\",\r\n  \"password\": \"karanasios7\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8700/api/user/login/"
+							},
+							"response": []
+						},
+						{
+							"name": "Register - ADMIN",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"admin@admin.gr\",\r\n  \"password\": \"karanasios7\",\r\n  \"role\": \"ΔΙΑΧΕΙΡΙΣΤΗΣ\",\r\n  \"privilege_names\": [\"ΔΙΑΧΕΙΡΙΣΤΗΣ\"],\r\n  \"code\": \"adIPgnzfMupKE9eyPBBozpPlkGxFLYr8BH4qJTP4chNC7JysXt5wsjkWw8NXVYqtLztuqpMaoUdkhjroYyPSV9mCHay9pckh4VaA\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8700/api/user/register_admin/"
+							},
+							"response": []
+						},
+						{
+							"name": "Register (1) - USER",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"development@example.com\",\r\n  \"password\": \"development123\",\r\n  \"role\": \"ΧΡΗΣΤΗΣ\",\r\n  \"privilege_names\": [\"ΠΡΟΒΛΕΨΗ ΖΗΤΗΣΗΣ\", \"ΣΥΝΙΣΤΩΜΕΝΗ ΠΟΣΟΤΗΤΑ ΑΠΟΘΕΜΑΤΩΝ\", \"ΔΡΟΜΟΛΟΓΗΣΗ\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8700/api/user/register/"
+							},
+							"response": []
+						},
+						{
+							"name": "update_user",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 2,\r\n    \"email\": \"development@example.com\",\r\n    \"role\": \"ΧΡΗΣΤΗΣ\",\r\n    \"is_active\": true,\r\n    \"updated_at\": null,\r\n    \"created_at\": null,\r\n    \"login_at\": null,\r\n    \"privilege_names\": [\"ΠΡΟΒΛΕΨΗ ΖΗΤΗΣΗΣ\", \"ΣΥΝΙΣΤΩΜΕΝΗ ΠΟΣΟΤΗΤΑ ΑΠΟΘΕΜΑΤΩΝ\", \"ΔΡΟΜΟΛΟΓΗΣΗ\"]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8700/api/user/update_user/"
+							},
+							"response": []
+						},
+						{
+							"name": "create_or_update_user_erp_api",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": 2,\r\n    \"client_name\": \"e-commerce\",\r\n    \"login_token_url\": \"http://localhost:7000/auth/login-token\",\r\n    \"sku_order_url\": \"http://localhost:7000/api/sku_order_development\",\r\n    \"inventory_params_url\": \"http://localhost:7000/api/inventory_params_development\",\r\n    \"distribution_routing_url\": \"http://localhost:7000/api/distribution_routing_data\",\r\n    \"sku_order_latest_url\": \"http://localhost:7000/api/sku_order_latest\",\r\n    \"inventory_params_latest_url\": \"http://localhost:7000/api/get_inventory_params_development_latest\",\r\n    \"token_username\": \"admin\",\r\n    \"token_password\": \"karanasios7\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8700/api/user/create_or_update_user_erp_api/"
+							},
+							"response": []
+						},
+						{
+							"name": "get_all_users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8700/api/user/get_all_users"
+							},
+							"response": []
+						},
+						{
+							"name": "get_user_erp_api",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8700/api/user/get_user_erp_api?user_id=2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8700",
+									"path": [
+										"api",
+										"user",
+										"get_user_erp_api"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "change_password_by_admin",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"development@example.com\",\r\n  \"new_password\": \"development4321\",\r\n  \"role\": \"ΔΙΑΧΕΙΡΙΣΤΗΣ\",\r\n  \"code\": \"adIPgnzfMupKE9eyPBBozpPlkGxFLYr8BH4qJTP4chNC7JysXt5wsjkWw8NXVYqtLztuqpMaoUdkhjroYyPSV9mCHay9pckh4VaA\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8700/api/user/change_password_by_admin/"
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "noauth"
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "change_password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"development@example.com\",\r\n  \"old_password\": \"development123\",\r\n  \"new_password\": \"karanasios8\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8700/api/user/change_password/"
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Predictions",
+			"item": [
+				{
+					"name": "get_all_sku_order_quantity_predictions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8700/api/get_all_sku_order_quantity_predictions?user_id=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8700",
+							"path": [
+								"api",
+								"get_all_sku_order_quantity_predictions"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "2"
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page_size",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sku_number",
+									"value": "514981",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_all_inventory_optimization",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8700/api/get_all_inventory_optimizations?user_id=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8700",
+							"path": [
+								"api",
+								"get_all_inventory_optimizations"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "2"
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page_size",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "inventory_record_id",
+									"value": "123",
+									"disabled": true
+								},
+								{
+									"key": "start_date",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "end_date",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_all_distribution_optimizations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8700/api/get_all_distribution_optimizations?user_id=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8700",
+							"path": [
+								"api",
+								"get_all_distribution_optimizations"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "2"
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page_size",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "vehicle_id",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "start_location_number",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "destination_location_number",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "start_date",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "end_date",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_merged_sku_metric_info",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sku_number\": 514981,\r\n    \"user_id\": 2\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8700/api/get_merged_sku_metric_info/"
+					},
+					"response": []
+				},
+				{
+					"name": "get_sku_inventory_params",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sku_number\": 514981,\r\n    \"user_id\": 2\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8700/api/get_sku_inventory_params/"
+					},
+					"response": []
+				},
+				{
+					"name": "run_inference",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sku_number\": 514981,\r\n    \"user_id\": 2\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8700/api/run_inference/"
+					},
+					"response": []
+				},
+				{
+					"name": "run_inventory_optimization",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sku_number\": 587871,\r\n    \"user_id\": 2,\r\n    \"inventory_params\": {\r\n        \"id\": null,\r\n        \"lambda_\": 500,\r\n        \"sigma\": 100,\r\n        \"stock_level\": 800,\r\n        \"time_period_t\": 1,\r\n        \"fixed_order_cost_k\": 50,\r\n        \"penalty_cost_p\": 10,\r\n        \"holding_cost_rate_i\": 0.01,\r\n        \"unit_cost_c\": 25,\r\n        \"truckload_capacity_ftl\": 40,\r\n        \"transportation_cost_tr\": 300\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8700/api/run_inventory_optimization/"
+					},
+					"response": []
+				},
+				{
+					"name": "run_distribution_optimization",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": 2\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8700/api/run_distribution_optimization/"
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

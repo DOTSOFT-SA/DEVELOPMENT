@@ -1,0 +1,85 @@
+services:
+  db:
+    image: postgres:17
+    container_name: db
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    networks:
+      - web-app-network
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - "5052:80"
+    depends_on:
+      - db
+    networks:
+      - web-app-network
+
+  development-backend:
+    build:
+      context: ./development-backend
+      dockerfile: Dockerfile
+    container_name: development-backend
+    depends_on:
+      - db
+    env_file:
+      - .env
+    links:
+      - db:db
+    networks:
+      - web-app-network
+      - erp-network
+    ports:
+      - "8700:8700"
+    # Run tests and prevent continue if fail
+    command: >
+      sh -c "pytest backend/api/tests.py --maxfail=1 --disable-warnings --exitfirst && python backend/manage.py runserver 0.0.0.0:8700"
+
+  development-db:
+    build:
+      context: ./development-db
+      dockerfile: Dockerfile
+    container_name: development-db
+    depends_on:
+      - development-backend
+    env_file:
+      - .env
+    links:
+      - db:db
+    networks:
+      - web-app-network
+
+  development-frontend:
+    build:
+      context: ./development-frontend
+      dockerfile: Dockerfile
+    container_name: development-frontend
+    depends_on:
+      - development-backend
+    env_file:
+      - .env
+    networks:
+      - web-app-network
+    ports:
+      - "5174:5174"
+
+networks:
+  erp-network:
+    name: development-erp_erp-network
+    external: true
+  web-app-network:
+    driver: bridge
+
+volumes:
+  pgdata:

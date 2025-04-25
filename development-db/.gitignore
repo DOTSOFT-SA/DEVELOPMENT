@@ -1,0 +1,6 @@
+.env
+.idea
+*.pyc
+*.iml
+/app/configs/users.json
+/app/configs/users_erp_api.json

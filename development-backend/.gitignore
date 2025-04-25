@@ -1,0 +1,5 @@
+.idea
+*.iml
+*.env
+*__pycache__
+backend/api/configs/clients_config.json
