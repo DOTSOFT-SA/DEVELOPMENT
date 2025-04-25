@@ -1,0 +1,5 @@
+.idea
+dolibarr.sql
+development-erp_mysql-data.tar.gz
+.env
+dolibarr/htdocs/conf/conf.php

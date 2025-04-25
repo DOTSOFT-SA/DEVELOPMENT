@@ -1,0 +1,323 @@
+{
+	"info": {
+		"_postman_id": "ea457ab5-6bc6-4bf8-9dd9-a6d2fef74009",
+		"name": "ERP FastAPI - Development",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "34589676"
+	},
+	"item": [
+		{
+			"name": "login-token",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://localhost:7000/auth/login-token"
+			},
+			"response": []
+		},
+		{
+			"name": "list_sku_order_development",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/api/sku_order_development",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"api",
+						"sku_order_development"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "page_size",
+							"value": "10",
+							"disabled": true
+						},
+						{
+							"key": "sku_number",
+							"value": "583996",
+							"disabled": true
+						},
+						{
+							"key": "sku_name",
+							"value": "Μάσκα Προστασίας",
+							"disabled": true
+						},
+						{
+							"key": "class_display_name",
+							"value": "μάσκες",
+							"disabled": true
+						},
+						{
+							"key": "start_order_date",
+							"value": "2023-01-01T00:00:00",
+							"disabled": true
+						},
+						{
+							"key": "end_order_date",
+							"value": "2023-12-31T23:59:59",
+							"disabled": true
+						},
+						{
+							"key": "order_date",
+							"value": "2023-10-28 11:00:00",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list_inventory_params_development",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/api/inventory_params_development",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"api",
+						"inventory_params_development"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "page_size",
+							"value": "10",
+							"disabled": true
+						},
+						{
+							"key": "sku_number",
+							"value": "583996",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list_vehicle_development",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/api/vehicle_development",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"api",
+						"vehicle_development"
+					],
+					"query": [
+						{
+							"key": "vehicle_id",
+							"value": "100",
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "page_size",
+							"value": "10\n",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list_location_development",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/api/location_development",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"api",
+						"location_development"
+					],
+					"query": [
+						{
+							"key": "location_id",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "location_name",
+							"value": "Λιμ",
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "page_size",
+							"value": "10\n",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list_route_development",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/api/route_development",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"api",
+						"route_development"
+					],
+					"query": [
+						{
+							"key": "route_id",
+							"value": "200",
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "page_size",
+							"value": "10\n",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "distribution_routing_data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:7000/api/distribution_routing_data"
+			},
+			"response": []
+		},
+		{
+			"name": "get_latest_sku_order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"ids\": [1,2,5]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:7000/api/sku_order_latest"
+			},
+			"response": []
+		},
+		{
+			"name": "get_inventory_params_development_latest",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"sku_number\": 514981\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:7000/api/get_inventory_params_development_latest/"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

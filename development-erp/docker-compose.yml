@@ -1,0 +1,114 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: dolibarr-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -udevelopment -pkaranasios7 --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - erp-network
+
+  adminer:
+    image: adminer
+    container_name: mysql-adminer
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      ADMINER_DEFAULT_SERVER: dolibarr-mysql
+    ports:
+      - "8081:8080" # Access Adminer via http://localhost:8081
+    networks:
+      - erp-network
+
+  # NOTES (db-loader):
+  # A) WE STRONGLY SUGGEST TO IMPORT THE 'dolibarr.sql' USING (LOCAL) MySQL WORKBENCH, NOT THE BELOW
+  #    (SINCE YOU RUN DOCKER AND THE ABOVE 'my-sql' DOCKER SERVICE IS INITIALIZED FIRST)
+  # B) THIS SERVICE AUTOMATICALLY LOADS THE LOCAL BACKUP FILE 'dolibarr.sql' AND IMPORTS IT INTO THE MYSQL DATABASE.
+  #     * AN EMPTY 'dolibarr' TABLE MUST ALREADY EXIST IN THE DATABASE FOR THIS TO WORK)
+  #     * DO NOT FORGET TO UNCOMMENT THE OTHER RELATED LINES BELOW
+#  db-loader:
+#    image: mysql:8.0
+#    container_name: dolibarr-db-loader
+#    depends_on:
+#      mysql:
+#        condition: service_healthy
+#    environment:
+#      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+#      MYSQL_DATABASE: dolibarr
+#      MYSQL_HOST: mysql
+#    volumes:
+#      - ./dolibarr.sql:/docker-entrypoint-initdb.d/dolibarr.sql
+#    command: >
+#      sh -c "
+#      until mysql -h mysql -u root -e 'SELECT 1'; do
+#        echo 'Waiting for MySQL...';
+#        sleep 10;
+#      done;
+#      mysql -h mysql -u root dolibarr < /docker-entrypoint-initdb.d/dolibarr.sql;
+#      echo 'Database loaded successfully.'"
+#    networks:
+#      - erp-network
+
+  create-db-tables-app:
+    build:
+      context: ./create-erp-development-db-tables-app
+    container_name: create-erp-development-db-tables-app
+    depends_on:
+      mysql:
+        condition: service_healthy  # Wait until MySQL is ready
+#      db-loader:
+#        condition: service_completed_successfully
+    networks:
+      - erp-network
+
+  erp-fastapi:
+    build:
+      context: ./erp-fastapi
+    container_name: erp-fastapi
+    depends_on:
+      mysql:
+        condition: service_healthy  # Wait until MySQL is ready
+#      db-loader:
+#        condition: service_completed_successfully
+    ports:
+      - "7000:7000"
+    networks:
+      - erp-network
+
+  dolibarr:
+    build:
+      context: ./dolibarr
+    container_name: dolibarr-erp
+    depends_on:
+      mysql:
+        condition: service_healthy  # Wait until MySQL is ready
+#      db-loader:
+#        condition: service_completed_successfully
+    ports:
+      - "8080:80" # Map container's port 80 to host's port 8080
+    volumes:
+      - ./dolibarr/htdocs:/var/www/html
+      - ./dolibarr/documents:/var/www/html/documents
+    networks:
+      - erp-network
+
+networks:
+  erp-network:
+    driver: bridge
+
+volumes:
+  mysql-data:

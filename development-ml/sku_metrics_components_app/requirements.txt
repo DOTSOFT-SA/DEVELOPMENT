@@ -1,0 +1,16 @@
+python-dotenv==1.0.1
+SQLAlchemy==2.0.37
+pydantic-settings==2.7.1
+asyncpg==0.30.0
+pandas==2.2.3
+requests==2.32.3
+holidays==0.65
+serpapi~=0.1.5
+selenium~=4.21.0
+googletrans~=4.0.0-rc1
+sentence-transformers==3.0.1
+vaderSentiment~=3.3.2
+schedule==1.2.2
+sqlalchemy-utils==0.41.2
+cryptography==44.0.2
+psycopg2==2.9.10

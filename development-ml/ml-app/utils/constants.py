@@ -1,0 +1,1 @@
+SKU_ORDER_QUANTITY_PREDICTION_MODEL_TYPE = "sku_order_quantity_prediction_ml_model"

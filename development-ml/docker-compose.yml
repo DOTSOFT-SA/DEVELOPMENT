@@ -1,0 +1,75 @@
+services:
+  ml-postgresql:
+    image: postgres:17
+    container_name: ml-postgresql
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    networks:
+      - ml-network
+    volumes:
+      - mldata:/var/lib/postgresql/data
+
+  pgadmin-ml:
+    image: dpage/pgadmin4
+    container_name: pgadmin-ml
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - "5051:80"
+    depends_on:
+      - ml-postgresql
+    networks:
+      - ml-network
+
+  create-ml-development-db-tables-app:
+    build:
+      context: ./create-ml-development-db-tables-app
+      dockerfile: Dockerfile
+    container_name: create-ml-db
+    depends_on:
+      - ml-postgresql
+    env_file:
+      - .env
+    networks:
+      - ml-network
+
+  ml-app:
+    build:
+      context: ./ml-app
+      dockerfile: Dockerfile
+    container_name: ml-app
+    depends_on:
+      create-ml-development-db-tables-app:
+        condition: service_completed_successfully
+    env_file:
+      - .env
+    networks:
+      - erp-network
+      - ml-network
+
+  sku_metrics_components_app:
+    build:
+      context: ./sku_metrics_components_app
+      dockerfile: Dockerfile
+    container_name: sku-metrics-app
+    depends_on:
+      create-ml-development-db-tables-app:
+        condition: service_completed_successfully
+    env_file:
+      - .env
+    networks:
+      - erp-network
+      - ml-network
+
+networks:
+  erp-network:
+    name: development-erp_erp-network
+    external: true
+  ml-network:
+    driver: bridge
+
+volumes:
+  mldata:
