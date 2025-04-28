@@ -1,12 +1,13 @@
 # Development-Web-App
 
-Το πρότζεκτ **Development-Web-App** είναι ένα ολοκληρωμένο σύστημα που ενσωματώνει Backend, Frontend και Database για την ανάπτυξη μίας web-based πλατφόρμας που αξιοποιεί μοντέλα ML και ERP δεδομένα. Αποτελεί το προϊόν που, μέσω της **background συνεργασίας** με τις εφαρμογές [development-erp](https://bitbucket.org/dotsoft-sa/development-backend-2/src/main/development-erp/) και [development-ml](https://bitbucket.org/dotsoft-sa/development-backend-2/src/main/development-ml/), επιτρέπει στον χρήστη να αξιοποιήσει λειτουργίες όπως **η πρόβλεψη ζήτησης SKU, η διαχείριση αποθεμάτων και η βελτιστοποίηση διανομής**, σε ένα ενιαίο ψηφιακό περιβάλλον.
+Το πρότζεκτ **Development-Web-App** είναι ένα ολοκληρωμένο σύστημα που ενσωματώνει Backend, Frontend και Database για την ανάπτυξη μίας web-based πλατφόρμας που αξιοποιεί μοντέλα ML και ERP δεδομένα. Αποτελεί το προϊόν που, μέσω της **background συνεργασίας** με τις εφαρμογές [development-erp](https://bitbucket.org/dotsoft-sa/development-backend-2/src/main/development-erp/) και [development-ml](https://bitbucket.org/dotsoft-sa/development-backend-2/src/main/development-ml/), επιτρέπει στον χρήστη να αξιοποιήσει λειτουργίες όπως **η πρόβλεψη ζήτησης SKU, η διαχείριση αποθεμάτων και η βελτιστοποίηση δρομολόγησης οχημάτων**, σε ένα ενιαίο ψηφιακό περιβάλλον.
+
 
 Για αυτόν τον σκοπό, δημιουργήθηκαν τα παρακάτω components:
 
 - **Development-DB**: Δημιουργεί και διαχειρίζεται τους απαραίτητους πίνακες στη βάση δεδομένων `PostgreSQL` του Web App.
 - **Development-Backend**: Επικοινωνεί με την `PostgreSQL Web App` και `MySQL-ERP Dolibarr` βάση & Υλοποιεί APIs μέσω Django (Python) framework.
-- **Development-Frontend**: Περιλαμβάνει τη React-Vite εφαρμογή, η οποία επικοινωνεί με το `development-backend` για να προσφέρει στους τελικούς χρήστες ένα διαδραστικό περιβάλλον για την παρακολούθηση προβλέψεων ζήτησης SKU, τη διαχείριση αποθεμάτων και τη βελτιστοποίηση διανομής.
+- **Development-Frontend**: Περιλαμβάνει τη React-Vite εφαρμογή, η οποία επικοινωνεί με το `development-backend` για να προσφέρει στους τελικούς χρήστες ένα διαδραστικό περιβάλλον για την παρακολούθηση προβλέψεων ζήτησης SKU, τη διαχείριση αποθεμάτων και τη βελτιστοποίηση δρομολόγησης οχημάτων.
 
 Όλα τα παραπάνω components ενορχηστρώνονται και λειτουργούν συνδυαστικά μέσω του Docker Compose, εξασφαλίζοντας μία ευέλικτη και ολοκληρωμένη υποδομή.
 
